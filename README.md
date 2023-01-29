@@ -18,7 +18,7 @@ the arduino UNO board comes already installed with the download. if you need to 
  for more check out (procedure on how to use the ide is on the tutorial link)`:link:    [tutorial](https://www.youtube.com/watch?v=nL34zDTPkcs&t=3s)
  
  ## Hardware setup.
- 5. Please follow the tinkercad connection as shown [here](https://www.tinkercad.com/things/2OciVETjter-swanky-migelo-waasa/editel?sharecode=Z_y9Ee0JQv2wn-_fAiqYmlN60dxicv_giDQWQEpBA70)
+ 5. Please follow the tinkercad connection as shown [here](https://www.tinkercad.com/things/2OciVETjter-swanky-migelo-waasa/editel?sharecode=0TgdtxdAeQiE40cOWNtAXAX4SZ7zAw_0Eh1uFHE40ho)
  The physical connection and schematic connection are demonstrated for proper operation of the components. 
  Ensure the board is disconnected from power when doing the setup.
  <br>You can also setup using the images and PDF attached in the downloads folder.<br>
