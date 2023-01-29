@@ -2,7 +2,7 @@
 
 The repo contains all the firmware codes for the project and instructions on how to load them to the hardware
 
-![image](https://user-images.githubusercontent.com/85989401/215305267-d380d16b-ee42-4c24-9bcb-9868d8e85608.png)
+![image](https://user-images.githubusercontent.com/85989401/215314807-9e4b37f9-3d8f-4bad-8d17-299943076b57.png)
 
 ## Requirements
 1. Set up the IDE, for this application you will need to download the Arduino ide here if you don't have it already installed for your distributions
