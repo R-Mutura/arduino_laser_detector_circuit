@@ -10,6 +10,7 @@ LiquidCrystal_I2C lcd = LiquidCrystal_I2C(0x27, 16, 2); // Change to (0x27,20,4)
 #define servo 6
 #define DC_motor 5
 #define IR_receiver 3 
+#define button 2
 
 #define servo_angle_pos 80
 #define servo_home_pos 0
@@ -19,11 +20,17 @@ int angle = 0;  //keep the angle of the servo
 Servo myservo;
 
 volatile int interrupt_counts = 0;
-volatile long timer = 0; //used to keep track of time between interrupts
-
+volatile long prevtimer = 0; //used to keep track of time between interrupts
+volatile long currenttimer = 0; //used to keep track of time between interrupts
+//////////other variables///////////////////////
 int startprocess = 1;
+int cpr = 3;
+int interval = 1000;
+int new_reading = 0;
+int old_reading = 0;
 
 void ISR_IR();
+void ISR_btn();
 
 void setup() {
   // Initiate the LCD:
@@ -38,6 +45,8 @@ void setup() {
   myservo.attach(servo); 
 //setup interrupt pin on IR_RECEIVER
   attachInterrupt(digitalPinToInterrupt(IR_receiver), ISR_IR, FALLING);
+  
+  attachInterrupt(digitalPinToInterrupt(button), ISR_btn, FALLING);
    lcd.setCursor(2, 0); // Set the cursor on the third column and first row.
   lcd.print("ARDUINO LASER SENSOR!");
   delay(2000);
@@ -47,21 +56,23 @@ void setup() {
 void loop() {
   // Print 'Hello World!' on the first line of the LCD:
   // Print the string "Hello World!"
+  new_reading = interrupt_counts;
+  currenttimer = millis();
+  if((currenttimer - prevtimer)>= interval)
+  {
+     //formula for calculation of rpm 
+     //RPM = ((new_reading - old_reading) / interval *(60*10)) / CPR;
+     
+    int RPM = (((new_reading - old_reading)*60)/cpr);
+     old_reading = new_reading;
+     prevtimer = currenttimer;  
+     Serial.print(RPM);
+     Serial.println(RPM);     
+  }
   
-  interrupt_counts = interrupt_counts/3;
-  if(interrupt_counts != 0){ //check that the data is not equal to zero
-     //send to serial monitor....
-     Serial.print(interrupt_counts );
-     Serial.println();
-    }
+
   
-  
-  
-  //check if the period between the interrupt is grater than 2minutes
-  if(millis()-timer > (120000))
-    {
-      startprocess = 1; //enable the process to start
-    }
+    
   //if the startprocess is set then we do the required process
   if(startprocess){
       //1. start DC Motor
@@ -84,5 +95,9 @@ void ISR_IR()
 {
   //process the interrupt
     interrupt_counts++;
-    timer = millis();
+   
+}
+void ISR_btn()
+{
+   startprocess = 1;  
 }
