@@ -2,7 +2,7 @@
 
 The repo contains all the firmware codes for the project and instructions on how to load them to the hardware
 
-![ARDUINO_LASER_HARDWARE_SETUP](https://user-images.githubusercontent.com/85989401/215462296-6b5e1673-5542-4a62-895c-79fc630eff2b.png)
+![ARDUINO_LASER_HARDWARE_SETUP](https://user-images.githubusercontent.com/85989401/215467753-78af9c7e-f53e-4e88-8268-4ae51a621460.png)
 
 ## Requirements
 1. Set up the IDE, for this application you will need to download the Arduino ide here if you don't have it already installed for your distributions
